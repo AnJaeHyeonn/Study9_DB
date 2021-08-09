@@ -22,6 +22,49 @@ public class LocationDAO {
 		ar = new ArrayList<LocationDTO>();
 	}
 
+	// getCount
+	// Location의 주소 갯수를 리턴하고 출력
+
+	public int getCount() {
+
+		Connection con = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		int i = 0;
+
+		try {
+
+			con = dbConnect.getConnect();
+
+			String sql = "SELECT COUNT(LOCATION_ID) FROM LOCATIONS";
+
+			st = con.prepareStatement(sql);
+
+			rs = st.executeQuery();
+
+			rs.next();
+			i = rs.getInt(1);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return i;
+
+	}
+
 	// getSearch
 	// street_address 의 일부를 받아서 검색
 	public ArrayList<LocationDTO> getSearch() {
@@ -35,16 +78,18 @@ public class LocationDAO {
 
 			System.out.println("검색 할 글자를 입력하세요.");
 			String input = sc.next().toLowerCase();
-			String input2 = "%" + input + "%";
-			System.out.println(input2);
-
 			String sql = "SELECT * FROM LOCATIONS WHERE lower(STREET_ADDRESS) LIKE ?";
 
 			st = con.prepareStatement(sql);
 
-			st.setString(1, input2);
+			st.setString(1, "%" + input + "%");
+			
+			System.out.println(st);
+			
 
 			rs = st.executeQuery();
+			
+			System.out.println(rs);
 
 			while (rs.next()) {
 				LocationDTO locationDTO = new LocationDTO();

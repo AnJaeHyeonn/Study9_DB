@@ -26,6 +26,9 @@ public class LocationController {
 		ar = locationDAO.getSearch();
 		locationView.view(ar);
 
+//		int i = locationDAO.getCount();
+//		locationView.view(i);
+
 	}
 
 }

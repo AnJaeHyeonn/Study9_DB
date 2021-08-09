@@ -22,4 +22,8 @@ public class LocationView {
 		}
 	}
 
+	public void view(int count) {
+		System.out.println(count + "개");
+	}
+
 }
