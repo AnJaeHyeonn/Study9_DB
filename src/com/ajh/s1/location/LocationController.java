@@ -23,11 +23,14 @@ public class LocationController {
 //		LocationDTO locationDTO = locationDAO.getOne(1000);
 //		locationView.view(locationDTO);
 
-		ar = locationDAO.getSearch();
-		locationView.view(ar);
+//		ar = locationDAO.getSearch();
+//		locationView.view(ar);
 
 //		int i = locationDAO.getCount();
 //		locationView.view(i);
+		
+		LocationDTO locationDTO = locationDAO.getLocation(100);
+		locationView.view(locationDTO);
 
 	}
 

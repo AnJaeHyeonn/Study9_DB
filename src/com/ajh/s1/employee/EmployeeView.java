@@ -31,4 +31,11 @@ public class EmployeeView {
 		System.out.println("전체 평균급여 : " + i);
 	}
 
+	public void view(Emp_DepartDTO emdDTO) {
+		System.out.println(emdDTO.getLast_name() + "\t");
+		System.out.println(emdDTO.getHire_date() + "\t");
+		System.out.println(emdDTO.getSalary() + "\t");
+		System.out.println(emdDTO.getDepartmentDTO().getDepartment_name());
+	}
+
 }

@@ -7,12 +7,16 @@ public class EmployeeController {
 
 	private EmployeeDAO employeeDAO;
 	private EmployeeView employeeView;
+	private EmployeeDTO employeeDTO;
 	ArrayList<EmployeeDTO> ar;
 	Scanner sc;
 
 	public EmployeeController() {
 		employeeDAO = new EmployeeDAO();
 		employeeView = new EmployeeView();
+		employeeDTO = new Emp_DepartDTO();
+		
+		employeeDTO.setEmployee_id(101);
 		ar = new ArrayList<EmployeeDTO>();
 		sc = new Scanner(System.in);
 	}
@@ -29,7 +33,8 @@ public class EmployeeController {
 			System.out.println("4. FIRST_NAME을 통한 정보 출력");
 			System.out.println("5. 전체 평균 급여의 정보 출력");
 			System.out.println("6. 부서 별 평균 급여의 정보 출력");
-			System.out.println("7. 종 료");
+			System.out.println("99. 예 제");
+			System.out.println("나머진 종료");
 
 			int i = sc.nextInt();
 
@@ -54,6 +59,10 @@ public class EmployeeController {
 				continue;
 			} else if (i == 6) {
 				employeeDAO.avg2();
+				continue;
+			} else if (i == 99) {
+				Emp_DepartDTO emdDTO = employeeDAO.getJoin(employeeDTO);
+				employeeView.view(emdDTO);
 				continue;
 			} else {
 				break;
